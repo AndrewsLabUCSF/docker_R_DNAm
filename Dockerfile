@@ -1,11 +1,10 @@
 FROM r-base:4.3.3
 
-RUN R --vanilla -e "install.packages(c('plyr', 'dplyr', 'tibble', 'glue', 'sm', 'readxl', 'readr', 'stringr', 'tidyr', 'purrr', 'lubridate', 'forcats'), repos='http://cran.rstudio.com', verbose = TRUE)"
+RUN R --vanilla -e "install.packages(c('plyr', 'dplyr', 'tibble', 'glue', 'sm', 'readxl', 'readr', 'stringr', 'tidyr', 'purrr', 'lubridate', 'forcats', 'remotes', 'BiocManager'), repos='http://cran.rstudio.com', verbose = TRUE)"
 
-RUN R --vanilla -e "install.packages(c('remotes'), repos='http://cran.rstudio.com', verbose = TRUE)"
 RUN R --vanilla -e 'remotes::install_github("perishky/meffil")'
+RUN R --vanilla -e 'BiocManager::install(c("minfi", "lumi", "limma", "watermelon", "dmrcate", "DMRcatedata", "illuminahumanmethylationepicanno.ilm10b4.hg19", "illuminahumanmethylationepicmanifest", "summarizedexperiment", "epidish", "s4vectors"), ask = FALSE)'
 
-RUN R --vanilla -e "install.packages(c('BiocManager'), repos='http://cran.rstudio.com', verbose = TRUE)"
 # RUN R --vanilla -e 'BiocManager::install("minfi", update = FALSE)'
 # RUN R --vanilla -e 'BiocManager::install("lumi", update = FALSE)'
 # RUN R --vanilla -e 'BiocManager::install("limma", update = FALSE)'
